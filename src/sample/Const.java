@@ -9,7 +9,6 @@ public class Const {
     public static final String USER_TYPE = "type";
 
     public static String show_res_reg;
-    public static String show_res_avt;
 
 
 }

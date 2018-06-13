@@ -47,9 +47,14 @@ public class Controller extends DatabaseHandler {
     @FXML
     private ScrollPane show_scroll_avt;
 
+    @FXML
+    private Text show_text_log;
+
 
     @FXML
     void initialize() {
+
+        show_scroll_avt.setVisible(false);
 
         setLog.setOnAction(event -> {
             String loginText = logUpName.getText().trim();
@@ -90,7 +95,6 @@ public class Controller extends DatabaseHandler {
             setReg.getScene().getWindow().hide();
         });
 
-
     }
 
     private void loginUser(String loginText, String loginPassword) throws SQLException, ClassNotFoundException {
@@ -98,30 +102,33 @@ public class Controller extends DatabaseHandler {
         PreparedStatement as2 = getDbConnection().prepareStatement("SELECT name, password, type FROM clients WHERE (name ='"+loginText+"' AND password = '"+loginPassword+"') ");
         ResultSet a2 = as2.executeQuery();
 
-        if (a2.next()){
-            logUpName.setVisible(false);
-            logUpPassword.setVisible(false);
-            setLog.setVisible(false);
+        logUpName.setVisible(false);
+        logUpPassword.setVisible(false);
+        setLog.setVisible(false);
 
+        if (a2.next()){
             if(a2.getInt("Type")==1){
-                show_scroll_avt.setContent(new Text("Вы админ! Вы можете видеть всех зарегистрированных пользователей:"));
+                Text Text = new Text();
+                String Text_in = "Вы админ! Вы можете видеть всех зарегистрированных пользователей: \n";
 
                 PreparedStatement as3 = getDbConnection().prepareStatement("SELECT * FROM clients");
                 ResultSet a3 = as3.executeQuery();
                 while(a3.next()){
                     for (int i = 1; i <= a3.getMetaData().getColumnCount(); i++){
-                        System.out.print(a3.getString(i) + "\t");
-                        //show_scroll_avt.setContent(new Text(a3.getString(i) + "\t"));
+                        Text_in = Text_in.concat(a3.getString(i) + "\t");
                     }
-                    System.out.println();
+                    Text_in = Text_in.concat("\n");
+                    Text.setText(Text_in);
+                    show_scroll_avt.setContent(Text);
                 }
+                show_scroll_avt.setVisible(true);
             }
             else{
-                System.out.printf("Добро пожаловать, %s!", loginText);
+                show_text_log.setText("Добро пожаловать, "+ loginText + "!");
             }
         }
         else{
-            System.out.println("Проверьте логин и пароль, либо зарегистрируйтесь и попробуйте заново!");
+            show_text_log.setText("Проверьте логин и пароль, либо зарегистрируйтесь и попробуйте заново!");
         }
 
     }

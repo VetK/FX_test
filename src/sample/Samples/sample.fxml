@@ -10,6 +10,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Controller">
    <children>
+      <ScrollPane fx:id="show_scroll_avt" layoutX="28.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
       <TextField fx:id="logUpName" layoutX="167.0" layoutY="78.0" promptText="Логин" />
       <PasswordField fx:id="logUpPassword" layoutX="167.0" layoutY="123.0" promptText="Пароль" />
       <Text layoutX="209.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Авторизация" />
@@ -20,11 +25,6 @@
       </Button>
       <Button fx:id="setReg" layoutX="28.0" layoutY="22.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" text="Регистрация" />
       <Button fx:id="setQuit" layoutX="355.0" layoutY="22.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" text="Выход" />
-      <Text layoutX="95.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="310.21875" />
-      <ScrollPane fx:id="show_scroll_avt" layoutX="28.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
+      <Text fx:id="show_text_log" layoutX="154.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="192.21875" />
    </children>
 </AnchorPane>
